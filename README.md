@@ -197,3 +197,15 @@ Ensure your `index.jsx` renders the `App` component wrapped with `BrowserRouter`
 With this structure, you have set up a React application with 4 routes: home, login, developers, and a fallback 404 page.
 
 Done✅ We have set up a basic project with 3 + 1 ( default ) Routes
+
+---
+
+📝 Notes: Understand **Routes** and **Route** Component
+
+- **Routes**: The `Routes` component is a container for all your route definitions. It ensures that only one route is rendered at a time, matching the current URL.
+- **Route**: The `Route` component defines a mapping between a URL path and a component. It renders the specified component when the URL matches the path.
+- **Route Path**: The `path` attribute in a `Route` component specifies the URL pattern that the route should match.
+- **Route Element**: The `element` attribute in a `Route` component specifies the React component to render when the path matches.
+- **Wildcard Route**: A route with a path of `*` acts as a catch-all for any unmatched routes, often used to display a 404 Not Found page.
+
+---

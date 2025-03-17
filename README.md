@@ -46,3 +46,34 @@ React Router v7 requires the following minimum versions:
 - react-dom@18
 # upgrade your node version , react version , react-dom version if you dont have this set up
 ```
+
+Install a React Project using vite
+
+```bash
+npx create-vite@latest
+```
+
+Next install React Router from npm:
+
+```bash
+npm i react-router
+```
+
+Finally, render a **< BrowserRouter>** around your application:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router";
+import App from "./app";
+
+const root = document.getElementById("root");
+//  wrap you component with Browser Router component
+ReactDOM.createRoot(root).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+```
+
+Done ✅ We have successfully integrate React Router with Our Application

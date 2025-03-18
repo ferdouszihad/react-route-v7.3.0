@@ -125,7 +125,7 @@ src/
 
 ### Create Route Components
 
-Create the following components in the `src/components/` directory:
+Create the following components in the `src/pages/` directory:
 
 **Home.jsx**
 
@@ -261,4 +261,74 @@ In this example, the `Link` component is used to create links to the Home, Devel
 
 ### Now Add this Component in All your pages
 
---
+**Home.jsx**
+
+```jsx
+import Navigation from "../components/Navigation";
+
+const Home = () => {
+  return (
+    <div>
+      <Navigation></Navigation>
+      <h2>Welcome to Home</h2>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+**Login.jsx**
+
+```jsx
+import Navigation from "../components/Navigation";
+
+const Login = () => {
+  return (
+    <div>
+      <Navigation></Navigation>
+      Welcome to Login Page
+    </div>
+  );
+};
+
+export default Login;
+```
+
+**Developers.jsx**
+
+```jsx
+import Navigation from "../components/Navigation";
+
+const Developers = () => {
+  return (
+    <div>
+      <Navigation></Navigation>
+      Welcome to Developers Page
+    </div>
+  );
+};
+
+export default Developers;
+```
+
+**NotFound.jsx**
+
+```jsx
+import Navigation from "../components/Navigation";
+
+const NotFound = () => {
+  return (
+    <div>
+      <Navigation></Navigation>
+      NotFound-404
+    </div>
+  );
+};
+
+export default NotFound;
+```
+
+- Now You will see the Navigation in all pages
+- By Clicking any navmenu , you can render different pages with out reload
+- If you want to go any unmatched routes you will see Not Found Page

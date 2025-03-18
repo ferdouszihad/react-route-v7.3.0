@@ -1,5 +1,12 @@
+import Navigation from "../components/Navigation";
+
 const NotFound = () => {
-  return <div>NotFound-404</div>;
+  return (
+    <div>
+      <Navigation></Navigation>
+      NotFound-404
+    </div>
+  );
 };
 
 export default NotFound;

@@ -332,3 +332,47 @@ export default NotFound;
 - Now You will see the Navigation in all pages
 - By Clicking any navmenu , you can render different pages with out reload
 - If you want to go any unmatched routes you will see Not Found Page
+
+## Nested Routing
+
+Previously we have use Navbar in All Components. When Url changes the Navbar are re-rendering. Let's explore it by redifining a function on Navigation
+
+```jsx
+import { Link } from "react-router";
+
+const Navigation = () => {
+  function getRandomRGBColor() {
+    const r = Math.floor(Math.random() * 256); // Random value between 0-255
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+
+    return `rgb(${r}, ${g}, ${b} ,.3)`;
+  }
+
+  return (
+    <nav style={{ backgroundColor: getRandomRGBColor() }}>
+      <h2 className="text-center">Developers Book</h2>
+      <ul className="flex justify-center space-x-4 border-b-2">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/developers">Developers</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navigation;
+```
+
+Now if you traverse all your routes , you will see that on each traversal Navbar will change its background.
+
+### How To Solve This ??
+
+You can solve this by nesting your routes. By nesting routes We can show a component / pages inside another components. Let's Explore with following code changes
+

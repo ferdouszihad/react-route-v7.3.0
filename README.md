@@ -64,6 +64,7 @@ Finally, render a **< BrowserRouter>** around your application:
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Routes, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router";
 import App from "./app";
 
@@ -71,12 +72,18 @@ const root = document.getElementById("root");
 //  wrap you component with Browser Router component
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
-    <App />
+    <Routes>
+      <Route path="/" elements={<App/>}>
+    <Routes>
   </BrowserRouter>
 );
 ```
 
 Done ✅ We have successfully integrate React Router with Our Application
+.The **path** define in which url your App component will show. <br>
+
+👉 Try different paths😀 for your application <br>
+👉 Explore how component rendering in the written path <br>
 
 ---
 
@@ -85,21 +92,35 @@ The BrowserRouter component is a part of the React Router library that uses the 
 
 ---
 
-## Create Routing with React Router
+📝 Note: **< Routes >** <br>
+The `Routes` component is a container for all your route definitions. It ensures that only one route is rendered at a time, matching the current URL.
 
-Suppose We are building an application **🔎Dev Finder** with 3 routes (home, login, developers), you can structure your application as follows:
+---
+
+📝 Note: **< Route >** <br>
+
+The `Route` component defines a mapping between a URL path and a component. It renders the specified component when the URL matches the path.
+
+- **Route Path**: The `path` attribute in a `Route` component specifies the URL pattern that the route should match.
+- **Route Element**: The `element` attribute in a `Route` component specifies the React component to render when the path matches.
+
+---
+
+## Routing with React Router (Declarative mode)
+
+Suppose We are building an application **🔎Developer-Book** with 3 page (home, developers , login ), you can structure your application as follows:
 
 ### Application Structure
 
 ```plaintext
 src/
-├── components/
+├── pages/
 │   ├── Home.jsx
 │   ├── Login.jsx
 │   ├── Developers.jsx
 │   └── NotFound.jsx
 ├── App.jsx
-├── index.jsx
+├── main.jsx
 ```
 
 ### Create Route Components
@@ -156,56 +177,88 @@ export default NotFound;
 
 ### Define Routes
 
-Lets define our routes in `App.jsx` :
+Lets define our routes in `main.jsx` :
 
 **App.jsx**
 
 ```jsx
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Developers from "./components/Developers";
-import NotFound from "./components/NotFound";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { BrowserRouter, Route, Routes } from "react-router";
+import "animate.css";
+import Home from "./pages/Home.jsx";
+import Developers from "./pages/Developers.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import Login from "./pages/Login.jsx";
 
-const App = () => {
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/developers" element={<Developers></Developers>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
+```
+
+### Let's see how renders working
+
+- if you go to "/" , The `Home.jsx` will render
+- if you go to "/developers" , The `Developers.jsx` will render
+- if you go to "/login" , The `Login.jsx` will render
+- if you go to "Any Other routes" , The `NotFound.jsx` will render
+
+---
+
+📝 Notes: Understand **splat Path** in **Route** Component
+
+- splat path with a path of `*` acts as a catch-all for any unmatched routes, often used to display a 404 Not Found page.
+
+---
+
+### Navigate ROutes
+
+To navigate between routes in your application, you can use the `Link` component from React Router. The `Link` component allows you to create navigational links that enable users to move between different routes without reloading the page.
+
+### Let's create a Simple Navbar
+
+Here's how you can use the `Link` component to navigate between routes:
+
+```jsx
+import { Link } from "react-router";
+
+const Navigation = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/developers" element={<Developers />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <nav className="">
+      <h2 className="text-center">Developers Book</h2>
+      <ul className="flex justify-center space-x-4 border-b-2">
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/developers">Developers</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
-export default App;
+export default Navigation;
 ```
 
-### Render the Application
-
-Ensure your `index.jsx` renders the `App` component wrapped with `BrowserRouter`:
-
-**index.jsx**
-
-```jsx
-<BrowserRouter>
-  <App />
-</BrowserRouter>
-```
-
-With this structure, you have set up a React application with 4 routes: home, login, developers, and a fallback 404 page.
-
-Done✅ We have set up a basic project with 3 + 1 ( default ) Routes
+In this example, the `Link` component is used to create links to the Home, Developers, and Login pages. When a user clicks on one of these links, React Router will navigate to the corresponding route without reloading the page.
 
 ---
 
-📝 Notes: Understand **Routes** and **Route** Component
+### Now Add this Component in All your pages
 
-- **Routes**: The `Routes` component is a container for all your route definitions. It ensures that only one route is rendered at a time, matching the current URL.
-- **Route**: The `Route` component defines a mapping between a URL path and a component. It renders the specified component when the URL matches the path.
-- **Route Path**: The `path` attribute in a `Route` component specifies the URL pattern that the route should match.
-- **Route Element**: The `element` attribute in a `Route` component specifies the React component to render when the path matches.
-- **Wildcard Route**: A route with a path of `*` acts as a catch-all for any unmatched routes, often used to display a 404 Not Found page.
-
----
+--

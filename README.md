@@ -441,3 +441,15 @@ createRoot(document.getElementById("root")).render(
 - You will now see multiple navigation bars on your screen.
 - Remove the navigation bar from all your pages.
 - The navigation bar will remain static inside the App component, while the pages will render within the Outlet.
+
+## How Nested Routes and Outlet Work
+
+In React Router, nested routes allow you to render components within other components based on the URL path. This is useful for creating layouts where certain components (like a navigation bar) remain static while others change based on the route.
+
+### Nested Routes
+
+Nested routes are defined by placing `<Route>` components inside other `<Route>` components. This creates a parent-child relationship between the routes. The parent route renders a component that includes an `<Outlet>` component, which acts as a placeholder for the child routes.
+
+### Outlet Component
+
+The `<Outlet>` component is provided by React Router and is used to render the child routes. When a nested route matches the current URL, the corresponding component is rendered inside the `<Outlet>`.

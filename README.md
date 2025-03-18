@@ -376,3 +376,68 @@ Now if you traverse all your routes , you will see that on each traversal Navbar
 
 You can solve this by nesting your routes. By nesting routes We can show a component / pages inside another components. Let's Explore with following code changes
 
+**App.jsx** <br>
+redifine your App.jsx like this. We will understand later what is happening here .
+
+```jsx
+import { Outlet } from "react-router";
+import Navbar from "./components/Navbar";
+
+function App() {
+  return (
+    <>
+      <header>
+        <Navbar></Navbar>
+      </header>
+      <main>
+        <p className="text-center text-sm">
+          Welcome to APP. I will render my child based on URL here.
+        </p>
+        <Outlet></Outlet>
+      </main>
+    </>
+  );
+}
+
+export default App;
+```
+
+**main.jsx** <br>
+
+In main.jsx,
+
+- define a default route `(/)` for rendering `App.jsx`
+- Paste All your routes inside this route
+
+```jsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { BrowserRouter, Route, Routes } from "react-router";
+import "animate.css";
+import Home from "./pages/Home.jsx";
+import Developers from "./pages/Developers.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import Login from "./pages/Login.jsx";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App></App>}>
+          {/* //here is my childs 👶 */}
+          <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/developers" element={<Developers></Developers>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="*" element={<NotFound></NotFound>}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </StrictMode>
+);
+```
+
+- You will now see multiple navigation bars on your screen.
+- Remove the navigation bar from all your pages.
+- The navigation bar will remain static inside the App component, while the pages will render within the Outlet.

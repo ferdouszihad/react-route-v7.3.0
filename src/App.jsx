@@ -1,13 +1,18 @@
-import Navbar from "./components/Navbar";
+import { Outlet } from "react-router";
+import Navigation from "./components/Navigation";
 
 function App() {
   return (
     <>
       <header>
-        <Navbar></Navbar>
+        <Navigation></Navigation>
       </header>
       <main>
-        <h2>Welcome to the World of React-Router</h2>
+        <p className="text-center text-sm">
+          Welcome to APP. I will render my child based on URL here.
+        </p>
+
+        <Outlet></Outlet>
       </main>
     </>
   );

@@ -453,3 +453,11 @@ Nested routes are defined by placing `<Route>` components inside other `<Route>`
 ### Outlet Component
 
 The `<Outlet>` component is provided by React Router and is used to render the child routes. When a nested route matches the current URL, the corresponding component is rendered inside the `<Outlet>`.
+
+### Layout
+
+The layout component uses the `<Outlet>` component to render the child routes, allowing you to nest routes and create a cohesive user experience.
+
+In our example, the `App` component serves as the layout component. It includes a navigation bar and a main content area where the child routes will be rendered. By using nested routes and the `<Outlet>` component, we ensure that the navigation bar remains static while the content changes based on the current route.
+
+This approach helps in maintaining a clean and organized code structure, making it easier to manage and update the layout and individual pages of your application.
